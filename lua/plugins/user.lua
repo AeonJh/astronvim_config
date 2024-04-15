@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
@@ -13,6 +13,19 @@ return {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
+  },
+
+  {
+    "okuuva/auto-save.nvim",
+    cmd = "ASToggle", -- optional for lazy loading on command
+    event = { "InsertLeave" }, -- optional for lazy loading on trigger events
+    keys = {
+      { "<leader>N", ":ASToggle<CR>", desc = "Toggle auto-save" },
+    },
+    opts = {
+      -- your config goes here
+      -- or just leave it empty :)
+    },
   },
 
   -- == Examples of Overriding Plugins ==
@@ -40,7 +53,7 @@ return {
   },
 
   -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
+  { "max397574/better-escape.nvim", enabled = true },
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
@@ -50,6 +63,27 @@ return {
       -- add more custom luasnip configuration such as filetype extend or custom snippets
       local luasnip = require "luasnip"
       luasnip.filetype_extend("javascript", { "javascriptreact" })
+    end,
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+      },
+    },
+    keys = {
+      {
+        "<leader>fA",
+        "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+        desc = "live_grep_args (root dir)",
+      },
+    },
+    config = function(_, opts)
+      local telescope = require "telescope"
+      telescope.setup(opts)
+      telescope.load_extension "live_grep_args"
     end,
   },
 
