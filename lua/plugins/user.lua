@@ -37,6 +37,14 @@ return {
     },
   },
 
+  {
+    "karb94/neoscroll.nvim",
+    enabled = false, -- disable by default
+    config = function ()
+      require('neoscroll').setup {}
+    end
+  },
+
   -- == Examples of Overriding Plugins ==
 
   -- customize alpha options
