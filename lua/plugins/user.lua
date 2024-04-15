@@ -28,6 +28,15 @@ return {
     },
   },
 
+  {
+    "lambdalisue/suda.vim",
+    lazy = true,
+    keys = {
+      { "<leader>W", ":SudaWrite<CR>", desc = "Write with sudo" },
+      { "<leader>R", ":SudaRead<CR>", desc = "Read with sudo" },
+    },
+  },
+
   -- == Examples of Overriding Plugins ==
 
   -- customize alpha options
