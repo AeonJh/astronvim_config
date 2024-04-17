@@ -45,6 +45,13 @@ return {
     end
   },
 
+  {
+    "m4xshen/hardtime.nvim",
+    enabled = false, -- disable by default
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    config = function() require("hardtime").setup() end,
+  },
+
   -- == Examples of Overriding Plugins ==
 
   -- customize alpha options
