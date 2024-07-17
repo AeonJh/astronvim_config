@@ -32,6 +32,10 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
+
+        -- do not add end of file newline when saving
+        binary = true, -- sets vim.opt.binary
+        endofline = false, -- sets vim.opt.endofline
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
