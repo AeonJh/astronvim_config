@@ -69,6 +69,10 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+        -- Project Rooter
+        ["<Leader>pp"] = { function() require("astrocore.rooter").info() end, desc = "Project Rooter Info" },
+        ["<Leader>pr"] = { function() require("astrocore.rooter").root() end, desc = "Set Project Root" },
       },
       t = {
         -- setting a mapping to false will disable it
