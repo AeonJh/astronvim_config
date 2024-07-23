@@ -114,6 +114,12 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    config = function()
+      require("noice").setup {
+        -- your noice config goes here
+        lsp = { signature = { enabled = false, }, },
+      }
+    end,
     opts = {
       -- add any options here
     },
