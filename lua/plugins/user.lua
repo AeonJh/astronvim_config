@@ -117,7 +117,10 @@ return {
     config = function()
       require("noice").setup {
         -- your noice config goes here
-        lsp = { signature = { enabled = false, }, },
+        lsp = {
+          signature = { enabled = false, },
+          hover = { enabled = false, },
+        },
       }
     end,
     opts = {
