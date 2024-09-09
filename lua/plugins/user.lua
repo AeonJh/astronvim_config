@@ -8,7 +8,10 @@ return {
 
   -- == Examples of Adding Plugins ==
 
-  "andweeb/presence.nvim",
+  -- Commented because of https://github.com/andweeb/presence.nvim/issues/150
+  -- And I think it's not useful for me.
+  -- "andweeb/presence.nvim",
+
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
