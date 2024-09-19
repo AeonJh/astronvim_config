@@ -179,13 +179,46 @@ return {
   },
 
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    ft = { 'markdown' },
-    build = function()
-      vim.cmd [[Lazy load markdown-preview.nvim]]
-      vim.fn['mkdp#util#install']()
-    end,
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  },
+
+  {
+    "ggandor/leap.nvim",
+    opts = {
+      equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
+    },
+    dependencies = { 'tpope/vim-repeat'},
+    keys = {
+      { 'f', mode = { 'n' },      '<Plug>(leap)'             },
+      { 'F', mode = { 'n' },      '<Plug>(leap-from-window)' },
+      { 'f', mode = { 'x', 'o' }, '<Plug>(leap-forward)'     },
+      { 'F', mode = { 'x', 'o' }, '<Plug>(leap-backward)'    },
+    }
+  },
+
+  {
+    "sindrets/diffview.nvim",
+    keys = {
+      { "<leader>gL", mode = { 'n' }, '<Cmd>DiffviewFileHistory<CR>', desc = 'Open DiffView File History' },
+    }
+  },
+
+  {
+    "rmagatti/goto-preview",
+    event = "BufEnter",
+    config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+    keys = {
+      { 'gpd', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_definition()<CR>', desc = 'Goto Preview Definition' },
+      { 'gpt', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_type_definition()<CR>', desc = 'Goto Preview Type Definition' },
+      { 'gpi', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_implementation()<CR>', desc = 'Goto Preview Implementation' },
+      { 'gpD', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_declaration()<CR>', desc = 'Goto Preview Declaration' },
+      { 'gP',  mode = { 'n' }, '<Cmd>lua require("goto-preview").close_all_win()<CR>', desc = 'Close All Preview Windows' },
+      { 'gpr', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_references()<CR>', desc = 'Goto Preview References' },
+    },
   },
 
   {
