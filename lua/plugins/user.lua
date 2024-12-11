@@ -202,6 +202,8 @@ return {
 
   {
     "sindrets/diffview.nvim",
+    enabled = false;
+    event = "BufEnter",
     keys = {
       { "<leader>gL", mode = { 'n' }, '<Cmd>DiffviewFileHistory<CR>', desc = 'Open DiffView File History' },
     }
