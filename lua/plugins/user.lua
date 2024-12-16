@@ -148,34 +148,19 @@ return {
 
 
   {
-    "JuanZoran/Trans.nvim",
-    build = function () require'Trans'.install() end,
-    -- config = function(_, opts)
-    --   require("Trans").setup(opts) {
-    --     frontend = {
-    --       hover = {
-    --         keymaps = {
-    --             pageup       = '[[',
-    --             pagedown     = ']]',
-    --             pin          = '<leader>[',
-    --             close        = '<leader>]',
-    --             toggle_entry = '<leader>;',
-    --         },
-    --       },
-    --     },
-    --   }
-    -- end,
-    keys = {
-        -- you can add keybindings here
-        { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = '󰊿 Translate' },
-        { 'mk', mode = { 'n', 'x' }, '<Cmd>TransPlay<CR>', desc = ' Auto Play' },
-        -- At present, the window of this function is not ready, you can change the view.i to hover in the configuration
-        { 'mi', '<Cmd>TranslateInput<CR>', desc = '󰊿 Translate From Input' },
-    },
-    dependencies = { 'kkharji/sqlite.lua', },
-    opts = {
-        -- your configuration there
-    }
+      "JuanZoran/Trans.nvim",
+      build = function () require'Trans'.install() end,
+      keys = {
+          -- you can add keybindings here
+          { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = '󰊿 Translate' },
+          { 'mk', mode = { 'n', 'x' }, '<Cmd>TransPlay<CR>', desc = ' Auto Play' },
+          -- At present, the window of this function is not ready, you can change the view.i to hover in the configuration
+          { 'mi', '<Cmd>TranslateInput<CR>', desc = '󰊿 Translate From Input' },
+      },
+      dependencies = { 'kkharji/sqlite.lua', },
+      opts = {
+          -- your configuration there
+      }
   },
 
   {
