@@ -12,4 +12,5 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.completion.copilot-lua" },
   { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.color.transparent-nvim" },
 }
