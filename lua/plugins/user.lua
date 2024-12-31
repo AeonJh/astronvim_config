@@ -169,6 +169,17 @@ return {
       keymaps = {
         show_help = '<f1>',
       },
+      ---@diagnostic disable-next-line: missing-fields
+      hooks = {
+        ---@diagnostic disable-next-line: unused-local
+        yazi_opened = function(_preselected_path, buffer, _config)
+          vim.cmd("set timeoutlen=0")
+        end,
+        ---@diagnostic disable-next-line: unused-local
+        yazi_closed_successfully = function(_preselected_path, _buffer, _config)
+          vim.cmd("set timeoutlen=500")
+        end,
+      },
     },
   },
 
