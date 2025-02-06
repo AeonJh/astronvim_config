@@ -32,6 +32,7 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
+        tabstop = 4, -- sets vim.opt.tabstop
 
         -- do not add end of file newline when saving
         -- binary = true, -- sets vim.opt.binary
