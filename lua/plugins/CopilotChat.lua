@@ -10,7 +10,7 @@ return {
 
     system_prompt = prompts.COPILOT_INSTRUCTIONS, -- System prompt to use (can be specified manually in prompt via /).
 
-    model = 'claude-3.5-sonnet', -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+    model = 'claude-3.7-sonnet', -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
     agent = 'copilot', -- Default agent to use, see ':CopilotChatAgents' for available agents (can be specified manually in prompt via @).
     context = nil, -- Default context or array of contexts to use (can be specified manually in prompt via #).
     sticky = nil, -- Default sticky prompt or array of sticky prompts to use at start of every new chat.
@@ -469,7 +469,7 @@ return {
     -- Debug Info
     -- { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
     -- Fix the issue with diagnostic
-    { "<leader>af", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
+    { "<leader>af", "<cmd>CopilotChatFix<cr>", desc = "CopilotChat - Fix Diagnostic" },
     -- Clear buffer and chat history
     { "<leader>aR", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
     -- Toggle Copilot Chat Vsplit
