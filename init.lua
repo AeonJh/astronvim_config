@@ -6,7 +6,6 @@ if not (vim.env.LAZY or (vim.uv or vim.loop).fs_stat(lazypath)) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
--- vim.cmd("set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1") -- for auto-encoding detection
 
 -- validate that lazy is available
 if not pcall(require, "lazy") then

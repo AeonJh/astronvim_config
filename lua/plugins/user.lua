@@ -1,6 +1,7 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
+-- PLEASE REMOVE THE EXAMPLES YOU HAVE NO INTEREST IN BEFORE ENABLING THIS FILE
 -- Here are some examples:
 
 ---@type LazySpec
@@ -8,75 +9,37 @@ return {
 
   -- == Examples of Adding Plugins ==
 
-  -- Commented because of https://github.com/andweeb/presence.nvim/issues/150
-  -- And I think it's not useful for me.
-  -- "andweeb/presence.nvim",
-
+  "andweeb/presence.nvim",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
 
-  {
-    "okuuva/auto-save.nvim",
-    cmd = "ASToggle", -- optional for lazy loading on command
-    event = { "InsertLeave" }, -- optional for lazy loading on trigger events
-    keys = {
-      { "<leader>N", ":ASToggle<CR>", desc = "Toggle auto-save" },
-    },
-    opts = {
-      -- your config goes here
-      -- or just leave it empty :)
-    },
-  },
-
-  {
-    "lambdalisue/suda.vim",
-    lazy = true,
-    keys = {
-      { "<leader>W", ":SudaWrite<CR>", desc = "Write with sudo" },
-      { "<leader>R", ":SudaRead<CR>", desc = "Read with sudo" },
-    },
-  },
-
-  {
-    "karb94/neoscroll.nvim",
-    enabled = false, -- disable by default
-    config = function ()
-      require('neoscroll').setup {}
-    end
-  },
-
-  {
-    "m4xshen/hardtime.nvim",
-    enabled = false, -- disable by default
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    config = function() require("hardtime").setup() end,
-  },
-
   -- == Examples of Overriding Plugins ==
 
-  -- customize alpha options
+  -- customize dashboard options
   {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
-      }
-      return opts
-    end,
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = table.concat({
+            " █████  ███████ ████████ ██████   ██████ ",
+            "██   ██ ██         ██    ██   ██ ██    ██",
+            "███████ ███████    ██    ██████  ██    ██",
+            "██   ██      ██    ██    ██   ██ ██    ██",
+            "██   ██ ███████    ██    ██   ██  ██████ ",
+            "",
+            "███    ██ ██    ██ ██ ███    ███",
+            "████   ██ ██    ██ ██ ████  ████",
+            "██ ██  ██ ██    ██ ██ ██ ████ ██",
+            "██  ██ ██  ██  ██  ██ ██  ██  ██",
+            "██   ████   ████   ██ ██      ██",
+          }, "\n"),
+        },
+      },
+    },
   },
 
   -- You can disable default plugins as follows:
@@ -91,157 +54,6 @@ return {
       local luasnip = require "luasnip"
       luasnip.filetype_extend("javascript", { "javascriptreact" })
     end,
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-      },
-    },
-    keys = {
-      {
-        "<leader>fA",
-        "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-        desc = "live_grep_args (root dir)",
-      },
-    },
-    config = function(_, opts)
-      local telescope = require "telescope"
-      telescope.setup(opts)
-      telescope.load_extension "live_grep_args"
-    end,
-  },
-
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("noice").setup {
-        -- your noice config goes here
-        lsp = {
-          signature = { enabled = false, },
-          hover = { enabled = false, },
-        },
-      }
-    end,
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  },
-
-  {
-    "mikavilpas/yazi.nvim",
-    event = "VeryLazy",
-    keys = {
-      -- 👇 in this section, choose your own keymappings!
-      {
-        "<leader>-",
-        "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current file",
-      },
-      {
-        -- Open in the current working directory
-        "<leader>cw",
-        "<cmd>Yazi cwd<cr>",
-        desc = "Open the file manager in nvim's working directory" ,
-      },
-      {
-        -- NOTE: this requires a version of yazi that includes
-        -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
-        '<c-up>',
-        "<cmd>Yazi toggle<cr>",
-        desc = "Resume the last yazi session",
-      },
-    },
-    opts = {
-      -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = false,
-      keymaps = {
-        show_help = '<f1>',
-      },
-      ---@diagnostic disable-next-line: missing-fields
-      hooks = {
-        ---@diagnostic disable-next-line: unused-local
-        yazi_opened = function(_preselected_path, buffer, _config)
-          vim.cmd("set timeoutlen=0")
-        end,
-        ---@diagnostic disable-next-line: unused-local
-        yazi_closed_successfully = function(_preselected_path, _buffer, _config)
-          vim.cmd("set timeoutlen=500")
-        end,
-      },
-    },
-  },
-
-  {
-      "JuanZoran/Trans.nvim",
-      build = function () require'Trans'.install() end,
-      keys = {
-          -- you can add keybindings here
-          { 'mm', mode = { 'n', 'x' }, '<Cmd>Translate<CR>', desc = '󰊿 Translate' },
-          { 'mk', mode = { 'n', 'x' }, '<Cmd>TransPlay<CR>', desc = ' Auto Play' },
-          -- At present, the window of this function is not ready, you can change the view.i to hover in the configuration
-          { 'mi', '<Cmd>TranslateInput<CR>', desc = '󰊿 Translate From Input' },
-      },
-      dependencies = { 'kkharji/sqlite.lua', },
-      opts = {
-          -- your configuration there
-      }
-  },
-
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {},
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-  },
-
-  {
-    "ggandor/leap.nvim",
-    opts = {
-      equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
-    },
-    dependencies = { 'tpope/vim-repeat'},
-    keys = {
-      { 'f', mode = { 'n' },      '<Plug>(leap)'             },
-      { 'F', mode = { 'n' },      '<Plug>(leap-from-window)' },
-      { 'f', mode = { 'x', 'o' }, '<Plug>(leap-forward)'     },
-      { 'F', mode = { 'x', 'o' }, '<Plug>(leap-backward)'    },
-    }
-  },
-
-  {
-    "sindrets/diffview.nvim",
-    enabled = false;
-    event = "BufEnter",
-    keys = {
-      { "<leader>gL", mode = { 'n' }, '<Cmd>DiffviewFileHistory<CR>', desc = 'Open DiffView File History' },
-    }
-  },
-
-  {
-    "rmagatti/goto-preview",
-    event = "BufEnter",
-    config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
-    keys = {
-      { 'gpd', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_definition()<CR>', desc = 'Goto Preview Definition' },
-      { 'gpt', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_type_definition()<CR>', desc = 'Goto Preview Type Definition' },
-      { 'gpi', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_implementation()<CR>', desc = 'Goto Preview Implementation' },
-      { 'gpD', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_declaration()<CR>', desc = 'Goto Preview Declaration' },
-      { 'gP',  mode = { 'n' }, '<Cmd>lua require("goto-preview").close_all_win()<CR>', desc = 'Close All Preview Windows' },
-      { 'gpr', mode = { 'n' }, '<Cmd>lua require("goto-preview").goto_preview_references()<CR>', desc = 'Goto Preview References' },
-    },
   },
 
   {
@@ -272,5 +84,197 @@ return {
         Rule("a", "a", "-vim")
       )
     end,
+  },
+
+  -- == User added plugins ==
+  {
+    "okuuva/auto-save.nvim",
+    cmd = "ASToggle", -- optional for lazy loading on command
+    event = { "InsertLeave" }, -- optional for lazy loading on trigger events
+    keys = {
+      { "<leader>N", ":ASToggle<CR>", desc = "Toggle auto-save" },
+    },
+    opts = {
+      -- your config goes here
+      -- or just leave it empty :)
+    },
+  },
+
+  {
+    "lambdalisue/suda.vim",
+    lazy = true,
+    keys = {
+      { "<leader>W", ":SudaWrite<CR>", desc = "Write with sudo" },
+      { "<leader>R", ":SudaRead<CR>", desc = "Read with sudo" },
+    },
+  },
+
+  {
+    "karb94/neoscroll.nvim",
+    enabled = false, -- disable by default
+    config = function() require("neoscroll").setup {} end,
+  },
+
+  {
+    "m4xshen/hardtime.nvim",
+    enabled = false, -- disable by default
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    config = function() require("hardtime").setup() end,
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("noice").setup {
+        -- your noice config goes here
+        lsp = {
+          signature = { enabled = false },
+          hover = { enabled = false },
+        },
+      }
+    end,
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  },
+
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "<leader>-",
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>cw",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open the file manager in nvim's working directory",
+      },
+      {
+        -- NOTE: this requires a version of yazi that includes
+        -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+        "<c-up>",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      keymaps = {
+        show_help = "<f1>",
+      },
+      ---@diagnostic disable-next-line: missing-fields
+      hooks = {
+        ---@diagnostic disable-next-line: unused-local
+        yazi_opened = function(_preselected_path, buffer, _config) vim.cmd "set timeoutlen=0" end,
+        ---@diagnostic disable-next-line: unused-local
+        yazi_closed_successfully = function(_preselected_path, _buffer, _config) vim.cmd "set timeoutlen=500" end,
+      },
+    },
+  },
+
+  {
+    "JuanZoran/Trans.nvim",
+    build = function() require("Trans").install() end,
+    keys = {
+      -- you can add keybindings here
+      { "mm", mode = { "n", "x" }, "<Cmd>Translate<CR>", desc = "󰊿 Translate" },
+      { "mk", mode = { "n", "x" }, "<Cmd>TransPlay<CR>", desc = " Auto Play" },
+      -- At present, the window of this function is not ready, you can change the view.i to hover in the configuration
+      { "mi", "<Cmd>TranslateInput<CR>", desc = "󰊿 Translate From Input" },
+    },
+    dependencies = { "kkharji/sqlite.lua" },
+    opts = {
+      -- your configuration there
+    },
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  },
+
+  {
+    "ggandor/leap.nvim",
+    opts = {
+      equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" },
+    },
+    dependencies = { "tpope/vim-repeat" },
+    keys = {
+      { "f", mode = { "n" }, "<Plug>(leap)" },
+      { "F", mode = { "n" }, "<Plug>(leap-from-window)" },
+      { "f", mode = { "x", "o" }, "<Plug>(leap-forward)" },
+      { "F", mode = { "x", "o" }, "<Plug>(leap-backward)" },
+    },
+  },
+
+  {
+    "sindrets/diffview.nvim",
+    enabled = false,
+    event = "BufEnter",
+    keys = {
+      { "<leader>gL", mode = { "n" }, "<Cmd>DiffviewFileHistory<CR>", desc = "Open DiffView File History" },
+    },
+  },
+
+  {
+    "rmagatti/goto-preview",
+    event = "BufEnter",
+    config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+    keys = {
+      {
+        "gpd",
+        mode = { "n" },
+        '<Cmd>lua require("goto-preview").goto_preview_definition()<CR>',
+        desc = "Goto Preview Definition",
+      },
+      {
+        "gpt",
+        mode = { "n" },
+        '<Cmd>lua require("goto-preview").goto_preview_type_definition()<CR>',
+        desc = "Goto Preview Type Definition",
+      },
+      {
+        "gpi",
+        mode = { "n" },
+        '<Cmd>lua require("goto-preview").goto_preview_implementation()<CR>',
+        desc = "Goto Preview Implementation",
+      },
+      {
+        "gpD",
+        mode = { "n" },
+        '<Cmd>lua require("goto-preview").goto_preview_declaration()<CR>',
+        desc = "Goto Preview Declaration",
+      },
+      {
+        "gP",
+        mode = { "n" },
+        '<Cmd>lua require("goto-preview").close_all_win()<CR>',
+        desc = "Close All Preview Windows",
+      },
+      {
+        "gpr",
+        mode = { "n" },
+        '<Cmd>lua require("goto-preview").goto_preview_references()<CR>',
+        desc = "Goto Preview References",
+      },
+    },
   },
 }
