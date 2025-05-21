@@ -13,5 +13,4 @@ return {
   { import = "astrocommunity.completion.copilot-lua" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.color.transparent-nvim" },
-  { import = "astrocommunity.editing-support.copilotchat-nvim" }
 }
