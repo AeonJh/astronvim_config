@@ -40,7 +40,17 @@ return {
         },
       },
     },
+    keys = {
+      {
+        "<leader>e",
+        function()
+          require("snacks").picker.explorer()
+        end,
+      }
+    }
   },
+
+  { "nvim-neo-tree/nvim-neo-tree", enabled = false }, -- disable by default
 
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = true },
@@ -279,20 +289,67 @@ return {
   },
 
   {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        -- Prevent interference with cmp
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+
+        filetypes = {
+          yaml = true,
+          markdown = true,
+          help = true,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = true,
+        },
+
+        copilot_model = "claude-sonnet-4",
+      })
+    end,
+  },
+
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "fang2hou/blink-copilot" },
+    opts = {
+      sources = {
+        default = { "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 100,
+            async = true,
+          },
+        },
+      },
+    },
+  },
+
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
-      model = 'claude-3.7-sonnet', -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+      model = "claude-sonnet-4", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
     },
 
     config = function()
       -- Register copilot-chat filetype
       require('render-markdown').setup({
+        completions = { lsp = { enabled = true } },
         file_types = { 'markdown', 'copilot-chat' },
       })
 
@@ -353,7 +410,7 @@ return {
       -- Quick chat with selection
       {
         "<leader>aq",
-        mode = "x",
+        mode = "n",
         function()
           local input = vim.fn.input("Quick Chat: ")
           if input ~= "" then
