@@ -93,6 +93,10 @@ return {
             return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
           end,
         },
+        ["<leader>lw"] = {
+          desc = "Switch header/source file",
+          "<cmd>ClangdSwitchSourceHeader<cr>",
+        },
       },
     },
     -- A custom `on_attach` function to be run after the default `on_attach` function

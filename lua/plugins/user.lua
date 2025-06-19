@@ -43,6 +43,7 @@ return {
     keys = {
       {
         "<leader>e",
+        desc = "Open explorer",
         function()
           require("snacks").picker.explorer()
         end,
