@@ -47,7 +47,48 @@ return {
         function()
           require("snacks").picker.explorer()
         end,
-      }
+      },
+      --lsp.preview
+      {
+        "gpd",
+        mode = { "n" },
+        function()
+          require("snacks").picker.lsp_definitions()
+        end,
+        desc = "Goto Preview Definition",
+      },
+      {
+        "gpt",
+        mode = { "n" },
+        function()
+          require("snacks").picker.lsp_type_definitions()
+        end,
+        desc = "Goto Preview Type Definition",
+      },
+      {
+        "gpi",
+        mode = { "n" },
+        function()
+          require("snacks").picker.lsp_implementations()
+        end,
+        desc = "Goto Preview Implementation",
+      },
+      {
+        "gpD",
+        mode = { "n" },
+        function()
+          require("snacks").picker.lsp_declarations()
+        end,
+        desc = "Goto Preview Declaration",
+      },
+      {
+        "gpr",
+        mode = { "n" },
+        function()
+          require("snacks").picker.lsp_references()
+        end,
+        desc = "Goto Preview References",
+      },
     }
   },
 
@@ -246,50 +287,6 @@ return {
   },
 
   {
-    "rmagatti/goto-preview",
-    event = "BufEnter",
-    config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
-    keys = {
-      {
-        "gpd",
-        mode = { "n" },
-        '<Cmd>lua require("goto-preview").goto_preview_definition()<CR>',
-        desc = "Goto Preview Definition",
-      },
-      {
-        "gpt",
-        mode = { "n" },
-        '<Cmd>lua require("goto-preview").goto_preview_type_definition()<CR>',
-        desc = "Goto Preview Type Definition",
-      },
-      {
-        "gpi",
-        mode = { "n" },
-        '<Cmd>lua require("goto-preview").goto_preview_implementation()<CR>',
-        desc = "Goto Preview Implementation",
-      },
-      {
-        "gpD",
-        mode = { "n" },
-        '<Cmd>lua require("goto-preview").goto_preview_declaration()<CR>',
-        desc = "Goto Preview Declaration",
-      },
-      {
-        "gP",
-        mode = { "n" },
-        '<Cmd>lua require("goto-preview").close_all_win()<CR>',
-        desc = "Close All Preview Windows",
-      },
-      {
-        "gpr",
-        mode = { "n" },
-        '<Cmd>lua require("goto-preview").goto_preview_references()<CR>',
-        desc = "Goto Preview References",
-      },
-    },
-  },
-
-  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
@@ -311,7 +308,7 @@ return {
           ["."] = true,
         },
 
-        copilot_model = "claude-sonnet-4",
+        copilot_model = "gpt-4o",
       })
     end,
   },
@@ -331,6 +328,30 @@ return {
             async = true,
           },
         },
+      },
+    },
+  },
+
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>st",
+        mode = { "n" },
+        function()
+          require("spectre").toggle()
+        end,
+        desc = "Toggle Spectre",
+      },
+      {
+        "<leader>sw",
+        mode = { "n", "x" },
+        function()
+          require("spectre").open_visual({ select_word = true })
+        end,
+        desc = "Spectre - Replace in files (visual)",
       },
     },
   },
