@@ -95,8 +95,7 @@ return {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
         -- Terminal mode mappings
-        ["<esc>"] = { [[<C-\><C-n>]], desc = "Exit terminal mode" },
-        ["jk"] = { [[<C-\><C-n>]], desc = "Exit terminal mode" },
+        ["<C-q>"] = { [[<C-\><C-n>]], desc = "Exit terminal mode" },
       },
     },
   },
