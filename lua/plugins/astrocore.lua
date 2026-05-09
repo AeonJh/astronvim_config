@@ -86,7 +86,6 @@ return {
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
-
         -- Project Rooter
         ["<Leader>pp"] = { function() require("astrocore.rooter").info() end, desc = "Project Rooter Info" },
         ["<Leader>pr"] = { function() require("astrocore.rooter").root() end, desc = "Set Project Root" },
