@@ -35,6 +35,7 @@ return {
       },
       pattern = {
         [".*/etc/foo/.*"] = "fooscript",
+        [".*%.[%w_+-]+%.tmpl"] = "gotmpl",
       },
     },
     -- vim options can be configured here

@@ -19,6 +19,11 @@ return {
         "vim",
         -- add more arguments for adding more treesitter parsers
         "diff",
+        "gotmpl",
+        "bash",
+        "toml",
+        "yaml",
+        "json",
       },
     },
   },

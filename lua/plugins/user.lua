@@ -292,7 +292,8 @@ return {
   },
 
   {
-    "ggandor/leap.nvim",
+    -- "ggandor/leap.nvim",
+    url = "https://codeberg.org/andyg/leap.nvim",
     opts = {
       equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" },
     },

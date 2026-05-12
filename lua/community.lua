@@ -11,4 +11,5 @@ return {
   -- import/override with your plugins folder
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.color.transparent-nvim" },
+  { import = "astrocommunity.pack.toml" },
 }
