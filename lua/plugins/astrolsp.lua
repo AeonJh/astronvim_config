@@ -52,6 +52,12 @@ return {
           "--background-index",
           "--completion-style=detailed",
           "--header-insertion=never",
+          table.concat({
+            "--query-driver=" .. vim.env.HOME .. "/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp*-elf-*",
+            vim.env.HOME .. "/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp*-elf-*",
+            vim.env.HOME .. "/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/riscv32-esp*-elf-*",
+            vim.env.HOME .. "/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/riscv32-esp*-elf-*",
+          }, ",")
         },
       },
     },

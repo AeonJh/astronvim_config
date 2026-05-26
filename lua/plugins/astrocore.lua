@@ -52,12 +52,8 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
-        python3_host_prog = vim.loop.os_uname().sysname == "Windows_NT"
-          and "C:/Python312/python.exe"
-          or "/usr/bin/python3",
         sqlite_clib_path = vim.loop.os_uname().sysname == "Windows_NT"
           and "C:/Program Files/Sqlite3/sqlite3.dll"
-          or "/usr/lib/x86_64-linux-gnu/libsqlite3.so",
       },
     },
     -- Mappings can be configured through AstroCore as well.
